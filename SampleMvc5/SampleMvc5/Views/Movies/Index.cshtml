@@ -1,0 +1,37 @@
+﻿@model IEnumerable<SampleMvc5.Models.Movie>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<h2>Available Movies</h2>
+
+<button><a href="/Movies/New">Add Movie</a></button>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Movies</th>
+            <th>Release Date</th>
+            <th>Added Date</th>
+            <th>@Html.DisplayNameFor(model => model.Genre)</th>
+            <th>Quantity</th>
+        </tr>
+       
+    </thead>
+    <tbody>
+        @foreach (var movies in Model)
+        {
+        <tr>
+            <td>@Html.ActionLink(movies.Name, "Edit", "Movies", new { id = movies.Id }, null)</td>
+            <td>@movies.ReleaseDate.ToShortDateString()</td>
+            <td>@movies.DateAdded.ToShortDateString()</td>
+            <td>@Html.DisplayFor(modelItem => movies.Genre.Name)</td>
+            <td>@movies.NumberInStock</td>
+        </tr>
+           
+        }
+    </tbody>
+</table>
+
